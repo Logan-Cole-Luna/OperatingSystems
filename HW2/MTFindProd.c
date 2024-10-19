@@ -1,8 +1,8 @@
 /*
 CS 420 
 Assignment 2: Multithreading and Synchronization
-Group # <- just your group number in this line
-Section # <- just your section number
+Group # 21
+Section # 2
 OSs Tested on: Linux, Ubuntu, Mac, etc., along with your system's CPU specifications
 */
 
@@ -86,7 +86,12 @@ int main(int argc, char *argv[]){
 	// The thread start function is ThFindProd
 	// Don't forget to properly initialize shared variables
 
-
+	for (i = 0; i < gThreadCount; i++) {
+		pthread_create(&tid[i], NULL, ThFindProd, (void*)indices[i]);
+	}
+	for (i = 0; i < gThreadCount; i++) {
+		pthread_join(tid[i], NULL); // Wait for all threads to complete
+	}
 	prod = ComputeTotalProduct();
 	printf("Threaded multiplication with parent waiting for all children completed in %ld ms. Product = %d\n", GetTime(), prod);
 
@@ -100,14 +105,32 @@ int main(int argc, char *argv[]){
 	// The thread start function is ThFindProd
 	// Don't forget to properly initialize shared variables
 
-
+	for (i = 0; i < gThreadCount; i++) {
+		pthread_create(&tid[i], NULL, ThFindProd, (void*)indices[i]);
+	}
+	// Busy waiting for all threads to finish
+	while (true) {
+		bool allDone = true;
+		for (i = 0; i < gThreadCount; i++) {
+			if (!gThreadDone[i]) {
+				allDone = false;
+				break;
+			}
+		}
+		if (allDone) break;
+	}
 	prod = ComputeTotalProduct();
 	printf("Threaded multiplication with parent continually checking on children completed in %ld ms. Product = %d\n", GetTime(), prod);
 
 	// Multi-threaded with semaphores
-
+	for (i = 0; i < gThreadCount; i++) {
+			pthread_create(&tid[i], &attr[i], ThFindProdWithSemaphore, (void*)indices[i]);
+	}
 	InitSharedVars();
 	// Initialize your semaphores here
+	for (i = 0; i < gThreadCount; i++) {
+			sem_wait(&completed);
+	}
 
 	SetTime();
 
@@ -115,16 +138,41 @@ int main(int argc, char *argv[]){
 	// Initialize threads, create threads, and then make the parent wait on the "completed" semaphore
 	// The thread start function is ThFindProdWithSemaphore
 	// Don't forget to properly initialize shared variables and semaphores using sem_init
+	for (i = 0; i < gThreadCount; i++) {
+		pthread_attr_init(&attr[i]);
+		pthread_create(&tid[i], &attr[i], ThFindProd, (void*)indices[i]);
+	}
 
+	for (i =	 0; i < gThreadCount; i++) {
+		pthread_join(tid[i], NULL);
+	}
+	for (i = 0; i < gThreadCount; i++) {
+		pthread_create(&tid[i], &attr[i], ThFindProd, (void*)indices[i]);
+	}
 
+	bool allDone = false;
+	while (!allDone) {
+		allDone = true;
+		for (i = 0; i < gThreadCount; i++) {
+			if (!gThreadDone[i]) {
+				allDone = false;
+				break;
+			}
+		}
 	prod = ComputeTotalProduct();
 	printf("Threaded multiplication with parent waiting on a semaphore completed in %ld ms. Min = %d\n", GetTime(), prod);
+	}
 }
 
 // Write a regular sequential function to multiply all the elements in gData mod NUM_LIMIT
 // REMEMBER TO MOD BY NUM_LIMIT AFTER EACH MULTIPLICATION TO PREVENT YOUR PRODUCT VARIABLE FROM OVERFLOWING
 int SqFindProd(int size) {
-
+int i, prod = 1;
+	for (i = 0; i < size; i++) {
+		prod *= gData[i];
+		prod %= NUM_LIMIT;
+	}
+	return prod;
 }
 
 // Write a thread function that computes the product of all the elements in one division of the array mod NUM_LIMIT
@@ -132,7 +180,17 @@ int SqFindProd(int size) {
 // When it is done, this function should store the product in gThreadProd[threadNum] and set gThreadDone[threadNum] to true
 void* ThFindProd(void *param) {
 	int threadNum = ((int*)param)[0];
+	int start = ((int*)param)[1];
+	int end = ((int*)param)[2];
 
+	gThreadProd[threadNum] = 1;
+	for (int i = start; i <= end; i++) {
+		gThreadProd[threadNum] *= gData[i];
+		gThreadProd[threadNum] %= NUM_LIMIT;
+	}
+
+	gThreadDone[threadNum] = true;
+	return NULL;
 }
 
 // Write a thread function that computes the product of all the elements in one division of the array mod NUM_LIMIT
@@ -143,7 +201,28 @@ void* ThFindProd(void *param) {
 // post the "completed" semaphore if it is the last thread to be done
 // Don't forget to protect access to gDoneThreadCount with the "mutex" semaphore
 void* ThFindProdWithSemaphore(void *param) {
+   int threadNum = ((int*)param)[0];
+	int start = ((int*)param)[1];
+	int end = ((int*)param)[2];
 
+	gThreadProd[threadNum] = 1;
+	for (int i = start; i <= end; i++) {
+		gThreadProd[threadNum] *= gData[i];
+		gThreadProd[threadNum] %= NUM_LIMIT;
+		if (gData[i] == 0) {
+			sem_post(&completed);
+			return NULL;
+		}
+	}
+
+	sem_wait(&mutex);
+	gDoneThreadCount++;
+	if (gDoneThreadCount == gThreadCount) {
+		sem_post(&completed);
+	}
+	sem_post(&mutex);
+
+	return NULL;
 }
 
 int ComputeTotalProduct() {
@@ -171,14 +250,24 @@ void InitSharedVars() {
 // Write a function that fills the gData array with random numbers between 1 and MAX_RANDOM_NUMBER
 // If indexForZero is valid and non-negative, set the value at that index to zero
 void GenerateInput(int size) {
-
+ srand(RANDOM_SEED);
+	for (int i = 0; i < size; i++) {
+		gData[i] = GetRand(1, MAX_RANDOM_NUMBER);
+	}
 }
 
 // Write a function that calculates the right indices to divide the array into thrdCnt equal divisions
 // For each division i, indices[i][0] should be set to the division number i,
 // indices[i][1] should be set to the start index, and indices[i][2] should be set to the end index
 void CalculateIndices(int arraySize, int thrdCnt, int indices[MAX_THREADS][3]) {
-
+int divSize = arraySize / thrdCnt;
+	int start = 0;
+	for (int i = 0; i < thrdCnt; i++) {
+		indices[i][0] = i; // threadNum
+		indices[i][1] = start; // startIndex
+		indices[i][2] = (i == thrdCnt - 1) ? (arraySize - 1) : (start + divSize - 1); // endIndex
+		start += divSize;
+	}
 }
 
 // Get a random number in the range [x, y]
