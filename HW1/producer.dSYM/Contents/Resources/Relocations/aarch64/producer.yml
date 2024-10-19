@@ -1,0 +1,23 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/loganlambeth/VSCode/CS420/OperatingSystems/HW1/producer'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003700, symSize: 0x1B0 }
+  - { offsetInCU: 0x4D, offset: 0x4D, size: 0x8, addend: 0x0, symName: _gShmPtr, symBinAddr: 0x100008000, symSize: 0x0 }
+  - { offsetInCU: 0x57, offset: 0x57, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003700, symSize: 0x1B0 }
+  - { offsetInCU: 0xC5, offset: 0xC5, size: 0x8, addend: 0x0, symName: _InitShm, symObjAddr: 0x1B0, symBinAddr: 0x1000038B0, symSize: 0x104 }
+  - { offsetInCU: 0x12F, offset: 0x12F, size: 0x8, addend: 0x0, symName: _Producer, symObjAddr: 0x2B4, symBinAddr: 0x1000039B4, symSize: 0x13C }
+  - { offsetInCU: 0x1DF, offset: 0x1DF, size: 0x8, addend: 0x0, symName: _SetBufSize, symObjAddr: 0x3F0, symBinAddr: 0x100003AF0, symSize: 0x28 }
+  - { offsetInCU: 0x203, offset: 0x203, size: 0x8, addend: 0x0, symName: _SetItemCnt, symObjAddr: 0x418, symBinAddr: 0x100003B18, symSize: 0x28 }
+  - { offsetInCU: 0x227, offset: 0x227, size: 0x8, addend: 0x0, symName: _SetIn, symObjAddr: 0x440, symBinAddr: 0x100003B40, symSize: 0x28 }
+  - { offsetInCU: 0x24B, offset: 0x24B, size: 0x8, addend: 0x0, symName: _SetOut, symObjAddr: 0x468, symBinAddr: 0x100003B68, symSize: 0x28 }
+  - { offsetInCU: 0x26F, offset: 0x26F, size: 0x8, addend: 0x0, symName: _GetRand, symObjAddr: 0x490, symBinAddr: 0x100003B90, symSize: 0x58 }
+  - { offsetInCU: 0x2B7, offset: 0x2B7, size: 0x8, addend: 0x0, symName: _WriteAtBufIndex, symObjAddr: 0x4E8, symBinAddr: 0x100003BE8, symSize: 0x54 }
+  - { offsetInCU: 0x2FB, offset: 0x2FB, size: 0x8, addend: 0x0, symName: _SetHeaderVal, symObjAddr: 0x53C, symBinAddr: 0x100003C3C, symSize: 0x50 }
+  - { offsetInCU: 0x33B, offset: 0x33B, size: 0x8, addend: 0x0, symName: _GetHeaderVal, symObjAddr: 0x58C, symBinAddr: 0x100003C8C, symSize: 0x38 }
+  - { offsetInCU: 0x37F, offset: 0x37F, size: 0x8, addend: 0x0, symName: _GetBufSize, symObjAddr: 0x5C4, symBinAddr: 0x100003CC4, symSize: 0x18 }
+  - { offsetInCU: 0x398, offset: 0x398, size: 0x8, addend: 0x0, symName: _GetItemCnt, symObjAddr: 0x5DC, symBinAddr: 0x100003CDC, symSize: 0x18 }
+  - { offsetInCU: 0x3B1, offset: 0x3B1, size: 0x8, addend: 0x0, symName: _GetIn, symObjAddr: 0x5F4, symBinAddr: 0x100003CF4, symSize: 0x18 }
+  - { offsetInCU: 0x3CA, offset: 0x3CA, size: 0x8, addend: 0x0, symName: _GetOut, symObjAddr: 0x60C, symBinAddr: 0x100003D0C, symSize: 0x18 }
+  - { offsetInCU: 0x3E4, offset: 0x3E4, size: 0x8, addend: 0x0, symName: _ReadAtBufIndex, symObjAddr: 0x624, symBinAddr: 0x100003D24, symSize: 0x3C }
+...

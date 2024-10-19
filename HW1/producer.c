@@ -1,10 +1,9 @@
 /*
 CS 420 
 Assignment 1: Shared Memory and Multi-Tasking
-Group # <- just your group number in this line
-Section # <- just your section number
-OSs Tested on: Linux, Ubuntu, Mac, etc.
-*/
+Group # 21 
+Section # 2
+OSs Tested on: Linux, Mac
 
 /*
 To compile and run your code, make sure that gcc
@@ -78,6 +77,17 @@ int main(int argc, char* argv[])
 
     // Write code to check the validity of the command-line arguments
 
+    // Validate command-line arguments
+    if (bufSize < 2 || bufSize > 800) {
+        printf("Error: bufSize must be between 2 and 800\n");
+        exit(1);
+    }
+
+    if (itemCnt <= 0) {
+        printf("Error: itemCnt must be a positive integer\n");
+        exit(1);
+    }
+
     // Function that creates a shared memory segment and initializes its header
     InitShm(bufSize, itemCnt);
 
@@ -120,6 +130,31 @@ void InitShm(int bufSize, int itemCnt)
 
     // Write code here to set the values of the four integers in the header
     // Just call the functions provided below, like this
+
+
+    // Create a shared memory object
+    int shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);
+    if (shm_fd == -1) {
+        printf("Error creating shared memory object\n");
+        exit(1);
+    }
+
+    // Set the size of the shared memory object
+    ftruncate(shm_fd, SHM_SIZE);
+
+    // Map the shared memory object
+    gShmPtr = mmap(0, SHM_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, shm_fd, 0);
+    if (gShmPtr == MAP_FAILED) {
+        printf("Error mapping shared memory\n");
+        exit(1);
+    }
+
+    // Initialize the header (buffer size, item count, in, out)
+    SetBufSize(bufSize);
+    SetItemCnt(itemCnt);
+    SetIn(0);
+    SetOut(0);
+
     SetBufSize(bufSize); 	
 }
 
@@ -139,6 +174,27 @@ void Producer(int bufSize, int itemCnt, int randSeed)
     // printf("Producing Item %d with value %d at Index %d\n", i, val, in);
     // where i is the item number, val is the item value, in is its index in the bounded buffer
 
+    srand(randSeed);  // Seed the random number generator
+
+    for (int i = 0; i < itemCnt; i++) 
+    {
+        int in = GetIn();   // Get current "in" index
+        int out = GetOut(); // Get current "out" index
+        
+        while ((in + 1) % bufSize == out) {
+            // Busy-wait until consumer consumes an item
+            in = GetIn();  // Update the 'in' index
+            out = GetOut(); // Update the 'out' index
+        } 
+
+        int val = GetRand(0, 2500);  // Generate a random value
+        WriteAtBufIndex(in, val);    // Write the item to the buffer
+        
+        // Update "in" pointer using circular buffer logic
+        SetIn((in + 1) % bufSize);
+        
+        printf("Producing Item %d with value %d at Index %d\n", i, val, in);
+    }
     printf("Producer Completed\n");
 }
 
@@ -176,11 +232,11 @@ int GetHeaderVal(int i)
 }
 
 // Set the ith value in the header
-void SetHeaderVal(int i, int val)
-{
-    // Write the implementation
-
+void SetHeaderVal(int i, int val) {
+    void* ptr = gShmPtr + i * sizeof(int);
+    memcpy(ptr, &val, sizeof(int));
 }
+
 
 // Get the value of shared variable "bufSize"
 int GetBufSize()
@@ -216,10 +272,11 @@ void WriteAtBufIndex(int indx, int val)
 }
 
 // Read the val at the given index in the bounded buffer
-int ReadAtBufIndex(int indx)
-{
-    // Write the implementation
-
+int ReadAtBufIndex(int indx) {
+    void* ptr = gShmPtr + 4 * sizeof(int) + indx * sizeof(int);  // Skip the header
+    int val;
+    memcpy(&val, ptr, sizeof(int));
+    return val;
 }
 
 // Get a random number in the range [x, y]
