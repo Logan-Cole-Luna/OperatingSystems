@@ -2,7 +2,7 @@
 triple:          'arm64-apple-darwin'
 binary-path:     '/Users/loganlambeth/VSCode/CS420/OperatingSystems/HW2/MTFindProd'
 relocations:
-  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x1000030A0, symSize: 0x634 }
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003140, symSize: 0x59C }
   - { offsetInCU: 0x4D, offset: 0x4D, size: 0x8, addend: 0x0, symName: _gRefTime, symBinAddr: 0x117D80408, symSize: 0x0 }
   - { offsetInCU: 0x69, offset: 0x69, size: 0x8, addend: 0x0, symName: _gData, symBinAddr: 0x100008004, symSize: 0x0 }
   - { offsetInCU: 0x94, offset: 0x94, size: 0x8, addend: 0x0, symName: _gThreadCount, symBinAddr: 0x117D80410, symSize: 0x0 }
@@ -11,17 +11,17 @@ relocations:
   - { offsetInCU: 0xE4, offset: 0xE4, size: 0x8, addend: 0x0, symName: _gThreadDone, symBinAddr: 0x117D80414, symSize: 0x0 }
   - { offsetInCU: 0x111, offset: 0x111, size: 0x8, addend: 0x0, symName: _completed, symBinAddr: 0x100008000, symSize: 0x0 }
   - { offsetInCU: 0x131, offset: 0x131, size: 0x8, addend: 0x0, symName: _mutex, symBinAddr: 0x117D80464, symSize: 0x0 }
-  - { offsetInCU: 0x13B, offset: 0x13B, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x1000030A0, symSize: 0x634 }
-  - { offsetInCU: 0x208, offset: 0x208, size: 0x8, addend: 0x0, symName: _GenerateInput, symObjAddr: 0x634, symBinAddr: 0x1000036D4, symSize: 0x74 }
-  - { offsetInCU: 0x24B, offset: 0x24B, size: 0x8, addend: 0x0, symName: _CalculateIndices, symObjAddr: 0x6A8, symBinAddr: 0x100003748, symSize: 0x100 }
-  - { offsetInCU: 0x2CA, offset: 0x2CA, size: 0x8, addend: 0x0, symName: _SetTime, symObjAddr: 0x7A8, symBinAddr: 0x100003848, symSize: 0x20 }
-  - { offsetInCU: 0x2E0, offset: 0x2E0, size: 0x8, addend: 0x0, symName: _SqFindProd, symObjAddr: 0x7C8, symBinAddr: 0x100003868, symSize: 0x84 }
-  - { offsetInCU: 0x324, offset: 0x324, size: 0x8, addend: 0x0, symName: _GetTime, symObjAddr: 0x84C, symBinAddr: 0x1000038EC, symSize: 0x34 }
-  - { offsetInCU: 0x34E, offset: 0x34E, size: 0x8, addend: 0x0, symName: _ThFindProdWithSemaphore, symObjAddr: 0x880, symBinAddr: 0x100003920, symSize: 0x144 }
-  - { offsetInCU: 0x3BC, offset: 0x3BC, size: 0x8, addend: 0x0, symName: _ThFindProd, symObjAddr: 0x9C4, symBinAddr: 0x100003A64, symSize: 0xEC }
-  - { offsetInCU: 0x42A, offset: 0x42A, size: 0x8, addend: 0x0, symName: _ComputeTotalProduct, symObjAddr: 0xAB0, symBinAddr: 0x100003B50, symSize: 0x88 }
-  - { offsetInCU: 0x460, offset: 0x460, size: 0x8, addend: 0x0, symName: _InitSharedVars, symObjAddr: 0xB38, symBinAddr: 0x100003BD8, symSize: 0x7C }
-  - { offsetInCU: 0x486, offset: 0x486, size: 0x8, addend: 0x0, symName: _GetRand, symObjAddr: 0xBB4, symBinAddr: 0x100003C54, symSize: 0x58 }
-  - { offsetInCU: 0x4CE, offset: 0x4CE, size: 0x8, addend: 0x0, symName: _GetMilliSecondTime, symObjAddr: 0xC0C, symBinAddr: 0x100003CAC, symSize: 0x44 }
-  - { offsetInCU: 0x507, offset: 0x507, size: 0x8, addend: 0x0, symName: _GetCurrentTime, symObjAddr: 0xC50, symBinAddr: 0x100003CF0, symSize: 0x38 }
+  - { offsetInCU: 0x140, offset: 0x140, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003140, symSize: 0x59C }
+  - { offsetInCU: 0x1F8, offset: 0x1F8, size: 0x8, addend: 0x0, symName: _GenerateInput, symObjAddr: 0x59C, symBinAddr: 0x1000036DC, symSize: 0x74 }
+  - { offsetInCU: 0x238, offset: 0x238, size: 0x8, addend: 0x0, symName: _CalculateIndices, symObjAddr: 0x610, symBinAddr: 0x100003750, symSize: 0x10C }
+  - { offsetInCU: 0x2B7, offset: 0x2B7, size: 0x8, addend: 0x0, symName: _SetTime, symObjAddr: 0x71C, symBinAddr: 0x10000385C, symSize: 0x20 }
+  - { offsetInCU: 0x2CD, offset: 0x2CD, size: 0x8, addend: 0x0, symName: _SqFindProd, symObjAddr: 0x73C, symBinAddr: 0x10000387C, symSize: 0x88 }
+  - { offsetInCU: 0x311, offset: 0x311, size: 0x8, addend: 0x0, symName: _GetTime, symObjAddr: 0x7C4, symBinAddr: 0x100003904, symSize: 0x34 }
+  - { offsetInCU: 0x33B, offset: 0x33B, size: 0x8, addend: 0x0, symName: _ThFindProd, symObjAddr: 0x7F8, symBinAddr: 0x100003938, symSize: 0xE0 }
+  - { offsetInCU: 0x3C5, offset: 0x3C5, size: 0x8, addend: 0x0, symName: _ThFindProdWithSemaphore, symObjAddr: 0x8D8, symBinAddr: 0x100003A18, symSize: 0x138 }
+  - { offsetInCU: 0x44F, offset: 0x44F, size: 0x8, addend: 0x0, symName: _ComputeTotalProduct, symObjAddr: 0xA10, symBinAddr: 0x100003B50, symSize: 0x88 }
+  - { offsetInCU: 0x485, offset: 0x485, size: 0x8, addend: 0x0, symName: _InitSharedVars, symObjAddr: 0xA98, symBinAddr: 0x100003BD8, symSize: 0x7C }
+  - { offsetInCU: 0x4A9, offset: 0x4A9, size: 0x8, addend: 0x0, symName: _GetRand, symObjAddr: 0xB14, symBinAddr: 0x100003C54, symSize: 0x58 }
+  - { offsetInCU: 0x4F1, offset: 0x4F1, size: 0x8, addend: 0x0, symName: _GetMilliSecondTime, symObjAddr: 0xB6C, symBinAddr: 0x100003CAC, symSize: 0x44 }
+  - { offsetInCU: 0x52A, offset: 0x52A, size: 0x8, addend: 0x0, symName: _GetCurrentTime, symObjAddr: 0xBB0, symBinAddr: 0x100003CF0, symSize: 0x38 }
 ...

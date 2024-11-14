@@ -1,0 +1,4 @@
+Sequential multiplication completed in 672 ms. Product = 5570
+Threaded multiplication with parent waiting on a semaphore completed in 0 ms. Product = -3227
+Threaded multiplication with parent continually checking on children completed in 372 ms. Product = -6080
+Threaded multiplication with parent waiting on a semaphore completed in 177 ms. Min = 6047

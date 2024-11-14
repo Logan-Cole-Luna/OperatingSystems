@@ -121,7 +121,7 @@ void InitShm(int bufSize, int itemCnt)
 {
     int in = 0;
     int out = 0;
-    const char *name = "OS_HW1_yourGroup#"; // Name of shared memory object to be passed to shm_open
+    const char *name = "OS_HW1_21"; // Name of shared memory object to be passed to shm_open
 
     // Write code here to create a shared memory block and map it to gShmPtr
     // Use the above name.

@@ -2,17 +2,17 @@
 triple:          'arm64-apple-darwin'
 binary-path:     '/Users/loganlambeth/VSCode/CS420/OperatingSystems/HW1/consumer'
 relocations:
-  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003A98, symSize: 0x224 }
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003AA0, symSize: 0x224 }
   - { offsetInCU: 0x4D, offset: 0x4D, size: 0x8, addend: 0x0, symName: _gShmPtr, symBinAddr: 0x100008000, symSize: 0x0 }
-  - { offsetInCU: 0x57, offset: 0x57, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003A98, symSize: 0x224 }
-  - { offsetInCU: 0xFD, offset: 0xFD, size: 0x8, addend: 0x0, symName: _ReadAtBufIndex, symObjAddr: 0x224, symBinAddr: 0x100003CBC, symSize: 0x3C }
-  - { offsetInCU: 0x141, offset: 0x141, size: 0x8, addend: 0x0, symName: _SetOut, symObjAddr: 0x260, symBinAddr: 0x100003CF8, symSize: 0x28 }
-  - { offsetInCU: 0x165, offset: 0x165, size: 0x8, addend: 0x0, symName: _SetIn, symObjAddr: 0x288, symBinAddr: 0x100003D20, symSize: 0x28 }
-  - { offsetInCU: 0x189, offset: 0x189, size: 0x8, addend: 0x0, symName: _SetHeaderVal, symObjAddr: 0x2B0, symBinAddr: 0x100003D48, symSize: 0x50 }
-  - { offsetInCU: 0x1C9, offset: 0x1C9, size: 0x8, addend: 0x0, symName: _GetHeaderVal, symObjAddr: 0x300, symBinAddr: 0x100003D98, symSize: 0x38 }
-  - { offsetInCU: 0x20D, offset: 0x20D, size: 0x8, addend: 0x0, symName: _GetBufSize, symObjAddr: 0x338, symBinAddr: 0x100003DD0, symSize: 0x18 }
-  - { offsetInCU: 0x226, offset: 0x226, size: 0x8, addend: 0x0, symName: _GetItemCnt, symObjAddr: 0x350, symBinAddr: 0x100003DE8, symSize: 0x18 }
-  - { offsetInCU: 0x23F, offset: 0x23F, size: 0x8, addend: 0x0, symName: _GetIn, symObjAddr: 0x368, symBinAddr: 0x100003E00, symSize: 0x18 }
-  - { offsetInCU: 0x258, offset: 0x258, size: 0x8, addend: 0x0, symName: _GetOut, symObjAddr: 0x380, symBinAddr: 0x100003E18, symSize: 0x18 }
-  - { offsetInCU: 0x271, offset: 0x271, size: 0x8, addend: 0x0, symName: _WriteAtBufIndex, symObjAddr: 0x398, symBinAddr: 0x100003E30, symSize: 0x54 }
+  - { offsetInCU: 0x57, offset: 0x57, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003AA0, symSize: 0x224 }
+  - { offsetInCU: 0xFD, offset: 0xFD, size: 0x8, addend: 0x0, symName: _ReadAtBufIndex, symObjAddr: 0x224, symBinAddr: 0x100003CC4, symSize: 0x3C }
+  - { offsetInCU: 0x141, offset: 0x141, size: 0x8, addend: 0x0, symName: _SetOut, symObjAddr: 0x260, symBinAddr: 0x100003D00, symSize: 0x28 }
+  - { offsetInCU: 0x165, offset: 0x165, size: 0x8, addend: 0x0, symName: _SetIn, symObjAddr: 0x288, symBinAddr: 0x100003D28, symSize: 0x28 }
+  - { offsetInCU: 0x189, offset: 0x189, size: 0x8, addend: 0x0, symName: _SetHeaderVal, symObjAddr: 0x2B0, symBinAddr: 0x100003D50, symSize: 0x50 }
+  - { offsetInCU: 0x1C9, offset: 0x1C9, size: 0x8, addend: 0x0, symName: _GetHeaderVal, symObjAddr: 0x300, symBinAddr: 0x100003DA0, symSize: 0x38 }
+  - { offsetInCU: 0x20D, offset: 0x20D, size: 0x8, addend: 0x0, symName: _GetBufSize, symObjAddr: 0x338, symBinAddr: 0x100003DD8, symSize: 0x18 }
+  - { offsetInCU: 0x226, offset: 0x226, size: 0x8, addend: 0x0, symName: _GetItemCnt, symObjAddr: 0x350, symBinAddr: 0x100003DF0, symSize: 0x18 }
+  - { offsetInCU: 0x23F, offset: 0x23F, size: 0x8, addend: 0x0, symName: _GetIn, symObjAddr: 0x368, symBinAddr: 0x100003E08, symSize: 0x18 }
+  - { offsetInCU: 0x258, offset: 0x258, size: 0x8, addend: 0x0, symName: _GetOut, symObjAddr: 0x380, symBinAddr: 0x100003E20, symSize: 0x18 }
+  - { offsetInCU: 0x271, offset: 0x271, size: 0x8, addend: 0x0, symName: _WriteAtBufIndex, symObjAddr: 0x398, symBinAddr: 0x100003E38, symSize: 0x54 }
 ...
